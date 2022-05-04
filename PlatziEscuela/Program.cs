@@ -3,7 +3,7 @@ using PlatziEscuela.Entidades;
 
 namespace PlatziEscuela
 {
-    class Program
+    public class Program
     {
         private const string NombreEscuela = "Platzi Academy";
         private const string CiudadEscuela = "Bigota";
@@ -11,10 +11,12 @@ namespace PlatziEscuela
 
         static void Main(string[] args)
         {
-            var ObjEscuela = new Escuela(NombreEscuela, 2012);
+            var ObjEscuela = new Escuela(NombreEscuela, 2012, TiposDeEscuela.Primaria,
+                Pais:"Colombia", Ciudad:"Bobota"
+                );
+
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
-            ObjEscuela.TipoEscuerla = TiposDeEscuela.Primaria;
             Console.WriteLine(ObjEscuela);
 
         }
