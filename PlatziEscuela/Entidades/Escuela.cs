@@ -17,6 +17,6 @@ namespace PlatziEscuela.Entidades
         public override string ToString()
         {
             return $"Nombre Escuela: {Nombre}, Tipo Escuela: {TipoEscuerla},\nPais: {Pais}, Ciudad: {Ciudad}";
-        }
+        } 
     }
 }
