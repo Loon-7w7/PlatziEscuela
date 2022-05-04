@@ -14,10 +14,15 @@ namespace PlatziEscuela
             var ObjEscuela = new Escuela(NombreEscuela, 2012, TiposDeEscuela.Primaria,
                 Pais:"Colombia", Ciudad:"Bobota"
                 );
+            var Cursos = new Curso() { 
+            NombreCurso ="101;"
+            };
 
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
             Console.WriteLine(ObjEscuela);
+            Console.WriteLine("================");
+            Console.WriteLine(Cursos.NombreCurso+","+Cursos.IdentidicadorUnico);
         }
     }
 }
