@@ -10,8 +10,13 @@ namespace PlatziEscuela.Entidades
         public int AñorDeCreacion { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
-        private int myvar;
+        public TiposDeEscuela TipoEscuerla { get; set; }
 
         public Escuela(string Nombre, int AñorDeCreacion) => (this.Nombre, this.AñorDeCreacion) = (Nombre, AñorDeCreacion);
+
+        public override string ToString()
+        {
+            return $"Nombre Escuela: {Nombre}, Tipo Escuela: {TipoEscuerla},\nPais: {Pais}, Ciudad: {Ciudad}";
+        } 
     }
 }

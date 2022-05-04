@@ -14,7 +14,10 @@ namespace PlatziEscuela
             var ObjEscuela = new Escuela(NombreEscuela, 2012);
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
-            Console.WriteLine(ObjEscuela.Nombre);
+            ObjEscuela.TipoEscuerla = TiposDeEscuela.Primaria;
+            Console.WriteLine(ObjEscuela);
+
+
         }
     }
 }
