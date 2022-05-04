@@ -18,7 +18,6 @@ namespace PlatziEscuela
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
             Console.WriteLine(ObjEscuela);
-
         }
     }
 }
