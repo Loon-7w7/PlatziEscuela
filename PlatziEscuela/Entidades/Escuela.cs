@@ -12,6 +12,7 @@ namespace PlatziEscuela.Entidades
         public string Ciudad { get; set; }
         public TiposDeEscuela TipoEscuerla { get; set; }
 
+
         public Escuela(string Nombre, int AñorDeCreacion) => (this.Nombre, this.AñorDeCreacion) = (Nombre, AñorDeCreacion);
 
         public Escuela(string Nombre, int AñorDeCreacion,
