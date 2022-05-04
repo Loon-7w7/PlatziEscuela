@@ -17,7 +17,6 @@ namespace PlatziEscuela
             ObjEscuela.TipoEscuerla = TiposDeEscuela.Primaria;
             Console.WriteLine(ObjEscuela);
 
-
         }
     }
 }
