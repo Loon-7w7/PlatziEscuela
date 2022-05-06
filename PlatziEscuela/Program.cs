@@ -25,8 +25,9 @@ namespace PlatziEscuela
             new Curso(){ NombreCurso = "102", TipoDeJornada = TiposJornada.Mañana },
             new Curso(){ NombreCurso = "103", TipoDeJornada = TiposJornada.Mañana }
             };
-            ObjEscuela.CursosLista.Add(new Curso(){NombreCurso ="201", TipoDeJornada = TiposJornada.Tarde });
-            ObjEscuela.CursosLista.Add(new Curso(){ NombreCurso = "202", TipoDeJornada = TiposJornada.Tarde });
+            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "201", TipoDeJornada = TiposJornada.Tarde });
+            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "202", TipoDeJornada = TiposJornada.Tarde });
+            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "202", TipoDeJornada = TiposJornada.Mañana });
 
 
             ObjEscuela.Pais = PaisEscuela;
@@ -34,9 +35,19 @@ namespace PlatziEscuela
             WriteLine(ObjEscuela);
             WriteLine(Separador);
             ImprimirCursos(ObjEscuela.CursosLista);
-            ImprimirCursosEscuela(ObjEscuela);
-            Predicate<Curso> MiPredicado = Predicado;
-            ObjEscuela.CursosLista.RemoveAll(MiPredicado);
+            //ImprimirCursosEscuela(ObjEscuela);
+
+
+            
+
+            //ObjEscuela.CursosLista.RemoveAll(delegate (Curso DelCurso)
+            //{
+            //    return DelCurso.NombreCurso == "103";
+            //});
+
+            //ObjEscuela.CursosLista.RemoveAll((DelCurso) => DelCurso.NombreCurso == "103");
+            //ObjEscuela.CursosLista.RemoveAll((DelCurso) => DelCurso.NombreCurso == "202" && DelCurso.TipoDeJornada == TiposJornada.Mañana);
+
             ImprimirCursosEscuela(ObjEscuela);
         }
 
@@ -61,7 +72,7 @@ namespace PlatziEscuela
         {
             foreach(var CursosN in ListaCursos)
             {
-                WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}");
+                WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}, Tipo De Jornada: {CursosN.TipoDeJornada}");
             }
         }
     }
