@@ -1,5 +1,6 @@
 ﻿using System;
 using PlatziEscuela.Entidades;
+using static System.Console;
 
 namespace PlatziEscuela
 {
@@ -15,28 +16,34 @@ namespace PlatziEscuela
                 Pais:"Colombia", Ciudad:"Bobota"
                 );
 
-            var ArregloCursos = new Curso[3];
+           
 
-            ArregloCursos[0] = new Curso()
-            {
-                NombreCurso = "101"
+            ObjEscuela.CursosArreglo = new Curso[] {
+            new Curso(){ NombreCurso = "101"},
+            new Curso(){ NombreCurso = "102"},
+            new Curso { NombreCurso = "103"}
             };
 
-            var curso2 = new Curso()
-            {
-                NombreCurso = "102"
-            };
-
-            ArregloCursos[1] = curso2;
-            ArregloCursos[2] = new Curso {
-            NombreCurso = "103"
-            };
+            ImprimirCursosEscuela(ObjEscuela);
 
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
             Console.WriteLine(ObjEscuela);
             Console.WriteLine("================");
-            ImprimirCursos(ArregloCursos);
+            ImprimirCursos(ObjEscuela.CursosArreglo);
+        }
+
+        private static void ImprimirCursosEscuela(Escuela objEscuela)
+        {
+            Console.WriteLine("==========");
+            Console.WriteLine("Cursos de la escuela");
+            Console.WriteLine("==========");
+            if (objEscuela?.CursosArreglo != null) {
+
+                ImprimirCursos(objEscuela.CursosArreglo);
+            }
+
+           
         }
 
         private static void ImprimirCursos(Curso[] arregloCursos)

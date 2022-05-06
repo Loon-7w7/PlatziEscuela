@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlatziEscuela.Entidades
 {
-    class Curso
+    public class Curso
     {
         public string IdentidicadorUnico { get;private set; }
         public string NombreCurso { get; set; }
