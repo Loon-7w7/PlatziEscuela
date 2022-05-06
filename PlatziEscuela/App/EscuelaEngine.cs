@@ -30,10 +30,7 @@ namespace PlatziEscuela.App
             //Inicializando Asignaturas de la escuela
             InicializarAsignaturas();
             //Inicializando Alumnos de la escuela
-            foreach (var VCurso in ObjeEscuela.CursosLista) 
-            {
-                VCurso.ListaDeAlumnos.AddRange(GenerarAlumnosAlAzar());
-            }
+            
             //Inicializando Evaluaciones de la escuela
             InicializarEvaluaciones();
         }
@@ -42,25 +39,22 @@ namespace PlatziEscuela.App
         {
             foreach (var curso in ObjeEscuela.CursosLista)
             {
-                foreach (var alumno in curso.ListaDeAlumnos)
+                foreach (var asigna in curso.ListaDeAsiganturas)
                 {
-                    alumno.ListaEvaluaciones = new List<Evalucaiones>();
-
-                    foreach (var asignatura in curso.ListaDeAsiganturas)
+                    foreach (var alum in curso.ListaDeAlumnos)
                     {
+                        var NumRandom = new Random(System.Environment.TickCount);
                         for (int i = 0; i < 5; i++)
                         {
-                            Random rnd = new Random();
-
                             var evaluacion = new Evalucaiones
                             {
-                                NombreEvaluaciones = $"Evaluación N°{i + 1} de {asignatura.NombreAsignatura}",
-                                ObjAlumno = alumno,
-                                ObjAsignatura = asignatura,
-                                Calificacion = (float)rnd.NextDouble() * 5
+                                NombreEvaluaciones = $"Evaluación N°{i + 1} de {asigna.NombreAsignatura}",
+                                ObjAlumno = alum,
+                                ObjAsignatura = asigna,
+                                Calificacion = (float)(NumRandom.NextDouble() * 5)
                             };
 
-                            alumno.ListaEvaluaciones.Add(evaluacion);
+                            alum.ListaEvaluaciones.Add(evaluacion);
                         }
                     }
                 }
