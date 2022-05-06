@@ -28,16 +28,16 @@ namespace PlatziEscuela
 
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
-            Console.WriteLine(ObjEscuela);
-            Console.WriteLine("================");
+            WriteLine(ObjEscuela);
+            WriteLine("================");
             ImprimirCursos(ObjEscuela.CursosArreglo);
         }
 
         private static void ImprimirCursosEscuela(Escuela objEscuela)
         {
-            Console.WriteLine("==========");
-            Console.WriteLine("Cursos de la escuela");
-            Console.WriteLine("==========");
+            WriteLine("==========");
+            WriteLine("Cursos de la escuela");
+            WriteLine("==========");
             if (objEscuela?.CursosArreglo != null) {
 
                 ImprimirCursos(objEscuela.CursosArreglo);
@@ -50,7 +50,7 @@ namespace PlatziEscuela
         {
             foreach(var CursosN in arregloCursos)
             {
-                Console.WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}");
+                WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}");
             }
         }
     }
