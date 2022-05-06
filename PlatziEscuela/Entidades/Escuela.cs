@@ -8,6 +8,7 @@ namespace PlatziEscuela.Entidades
 {
     public class Escuela
     {
+        public string IdentidicadorUnico { get; private set; } = Guid.NewGuid().ToString();
         public string Nombre { get; set; }
         public int AñorDeCreacion { get; set; }
         public string Pais { get; set; }
