@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using PlatziEscuela.Entidades;
 using PlatziEscuela.App;
+using PlatziEscuela.Util;
 using static System.Console;
 
 namespace PlatziEscuela
 {
     public class Program
     {
-        private const string NombreEscuela = "Platzi Academy";
-        private const string CiudadEscuela = "Bigota";
-        private const string PaisEscuela = "Colimbia";
-        private const string Separador = "================";
+        
+        
         private const string TextoCursosEscuela = "Cursos de la escuela";
+        private const string TextoBienvenidaEscuela = "Bienvendido A la escuela";
 
         static void Main(string[] args)
         {
             var Engine = new EscuelaEngine();
             Engine.InicialicarValoresDelPrograma();
+            Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
         }
 
@@ -28,9 +29,9 @@ namespace PlatziEscuela
 
         private static void ImprimirCursosEscuela(Escuela objEscuela)
         {
-            WriteLine(Separador);
-            WriteLine(TextoCursosEscuela);
-            WriteLine(Separador);
+            
+            Printer.EscirbirTitulo(TextoCursosEscuela);
+            
             if (objEscuela?.CursosLista != null) {
 
                 ImprimirCursos(objEscuela.CursosLista);
