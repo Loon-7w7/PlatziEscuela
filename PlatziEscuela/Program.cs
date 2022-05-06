@@ -35,6 +35,14 @@ namespace PlatziEscuela
             WriteLine(Separador);
             ImprimirCursos(ObjEscuela.CursosLista);
             ImprimirCursosEscuela(ObjEscuela);
+            Predicate<Curso> MiPredicado = Predicado;
+            ObjEscuela.CursosLista.RemoveAll(MiPredicado);
+            ImprimirCursosEscuela(ObjEscuela);
+        }
+
+        private static bool Predicado(Curso objCurso)
+        {
+            return objCurso.NombreCurso == "103";
         }
 
         private static void ImprimirCursosEscuela(Escuela objEscuela)
