@@ -32,7 +32,7 @@ namespace PlatziEscuela.App
             //Inicializando Alumnos de la escuela
             foreach (var VCurso in ObjeEscuela.CursosLista) 
             {
-                VCurso.ListaDeAlumnos.AddRange(InicializarAlumnos());
+                VCurso.ListaDeAlumnos.AddRange(GenerarAlumnosAlAzar());
             }
             //Inicializando Evaluaciones de la escuela
             InicializarEvaluaciones();
@@ -54,11 +54,11 @@ namespace PlatziEscuela.App
                     new Asignatura { NombreAsignatura ="Castellano" },
                     new Asignatura { NombreAsignatura ="Ciencias Naturales" }
                 };
-                Curso.ListaDeAsiganturas.AddRange(ListaAsignaturas);
+                Curso.ListaDeAsiganturas = ListaAsignaturas;
             }
         }
 
-        private IEnumerable<Alumno> InicializarAlumnos()
+        private List<Alumno> GenerarAlumnosAlAzar(int CantidadDeAlunos)
         {
             string[] PrimerNombre = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
             string[] ApeliidoPaterno = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
@@ -68,7 +68,7 @@ namespace PlatziEscuela.App
                                  from Nombre2 in SegundoNombre
                                  from Apellido in ApeliidoPaterno
                                  select new Alumno { NombreAlumno = $"{Nombre1} {Nombre2} {Apellido}" };
-            return ListadeAlunnos;
+            return ListadeAlunnos.OrderBy( (Alum)=>Alum.IdentidicadorUnico ).Take(CantidadDeAlunos).ToList();
         }
 
         private void InicializarCursos()
@@ -81,6 +81,14 @@ namespace PlatziEscuela.App
             new Curso(){ NombreCurso = "202", TipoDeJornada = TiposJornada.Tarde  },
             new Curso(){ NombreCurso = "202", TipoDeJornada = TiposJornada.Mañana }
             };
+            Random NumRandom = new Random();
+          
+            foreach (var Cur in ObjeEscuela.CursosLista) 
+            {
+                int cantidadRandom = NumRandom.Next(5, 20);
+                Cur.ListaDeAlumnos = GenerarAlumnosAlAzar(cantidadRandom);
+            }
+
         }
     }
 }
