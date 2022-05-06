@@ -1,5 +1,6 @@
 ﻿using System;
 using PlatziEscuela.Entidades;
+using static System.Console;
 
 namespace PlatziEscuela
 {
@@ -14,15 +15,43 @@ namespace PlatziEscuela
             var ObjEscuela = new Escuela(NombreEscuela, 2012, TiposDeEscuela.Primaria,
                 Pais:"Colombia", Ciudad:"Bobota"
                 );
-            var Cursos = new Curso() { 
-            NombreCurso ="101;"
+
+           
+
+            ObjEscuela.CursosArreglo = new Curso[] {
+            new Curso(){ NombreCurso = "101"},
+            new Curso(){ NombreCurso = "102"},
+            new Curso { NombreCurso = "103"}
             };
+
+            ImprimirCursosEscuela(ObjEscuela);
 
             ObjEscuela.Pais = PaisEscuela;
             ObjEscuela.Ciudad = CiudadEscuela;
-            Console.WriteLine(ObjEscuela);
-            Console.WriteLine("================");
-            Console.WriteLine(Cursos.NombreCurso+","+Cursos.IdentidicadorUnico);
+            WriteLine(ObjEscuela);
+            WriteLine("================");
+            ImprimirCursos(ObjEscuela.CursosArreglo);
+        }
+
+        private static void ImprimirCursosEscuela(Escuela objEscuela)
+        {
+            WriteLine("==========");
+            WriteLine("Cursos de la escuela");
+            WriteLine("==========");
+            if (objEscuela?.CursosArreglo != null) {
+
+                ImprimirCursos(objEscuela.CursosArreglo);
+            }
+
+           
+        }
+
+        private static void ImprimirCursos(Curso[] arregloCursos)
+        {
+            foreach(var CursosN in arregloCursos)
+            {
+                WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}");
+            }
         }
     }
 }
