@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PlatziEscuela.Entidades;
+using PlatziEscuela.App;
 using static System.Console;
 
 namespace PlatziEscuela
@@ -15,37 +16,9 @@ namespace PlatziEscuela
 
         static void Main(string[] args)
         {
-            var ObjEscuela = new Escuela(NombreEscuela, 2012, TiposDeEscuela.Primaria,
-                Pais: PaisEscuela, Ciudad: CiudadEscuela
-                );
-
-
-            ObjEscuela.CursosLista = new List<Curso>() {
-            new Curso(){ NombreCurso = "101", TipoDeJornada = TiposJornada.Mañana },
-            new Curso(){ NombreCurso = "102", TipoDeJornada = TiposJornada.Mañana },
-            new Curso(){ NombreCurso = "103", TipoDeJornada = TiposJornada.Mañana }
-            };
-            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "201", TipoDeJornada = TiposJornada.Tarde });
-            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "202", TipoDeJornada = TiposJornada.Tarde });
-            ObjEscuela.CursosLista.Add(new Curso() { NombreCurso = "202", TipoDeJornada = TiposJornada.Mañana });
-
-
-            ObjEscuela.Pais = PaisEscuela;
-            ObjEscuela.Ciudad = CiudadEscuela;
-            WriteLine(ObjEscuela);
-            WriteLine(Separador);
-            ImprimirCursos(ObjEscuela.CursosLista);
-            //ImprimirCursosEscuela(ObjEscuela);
-  
-            //ObjEscuela.CursosLista.RemoveAll(delegate (Curso DelCurso)
-            //{
-            //    return DelCurso.NombreCurso == "103";
-            //});
-
-            //ObjEscuela.CursosLista.RemoveAll((DelCurso) => DelCurso.NombreCurso == "103");
-            //ObjEscuela.CursosLista.RemoveAll((DelCurso) => DelCurso.NombreCurso == "202" && DelCurso.TipoDeJornada == TiposJornada.Mañana);
-
-            ImprimirCursosEscuela(ObjEscuela);
+            var Engine = new EscuelaEngine();
+            Engine.InicialicarValoresDelPrograma();
+            ImprimirCursosEscuela(Engine.ObjeEscuela);
         }
 
         private static bool Predicado(Curso objCurso)
