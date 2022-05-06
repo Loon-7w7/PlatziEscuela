@@ -8,6 +8,7 @@ namespace PlatziEscuela.Entidades
     {
         public string IdentidicadorUnico { get; private set; }
         public string NombreAlumno { get; set; }
+        public List<Evalucaiones> ListaEvaluaciones { get; set; }
         public Alumno() => IdentidicadorUnico = Guid.NewGuid().ToString();
     }
 }

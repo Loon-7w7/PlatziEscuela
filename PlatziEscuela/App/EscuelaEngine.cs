@@ -40,7 +40,31 @@ namespace PlatziEscuela.App
 
         private void InicializarEvaluaciones()
         {
-            
+            foreach (var curso in ObjeEscuela.CursosLista)
+            {
+                foreach (var alumno in curso.ListaDeAlumnos)
+                {
+                    alumno.ListaEvaluaciones = new List<Evalucaiones>();
+
+                    foreach (var asignatura in curso.ListaDeAsiganturas)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Random rnd = new Random();
+
+                            var evaluacion = new Evalucaiones
+                            {
+                                NombreEvaluaciones = $"Evaluación N°{i + 1} de {asignatura.NombreAsignatura}",
+                                ObjAlumno = alumno,
+                                ObjAsignatura = asignatura,
+                                Calificacion = (float)rnd.NextDouble() * 5
+                            };
+
+                            alumno.ListaEvaluaciones.Add(evaluacion);
+                        }
+                    }
+                }
+            }
         }
 
         private void InicializarAsignaturas()
