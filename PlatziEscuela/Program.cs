@@ -36,10 +36,7 @@ namespace PlatziEscuela
             WriteLine(Separador);
             ImprimirCursos(ObjEscuela.CursosLista);
             //ImprimirCursosEscuela(ObjEscuela);
-
-
-            
-
+  
             //ObjEscuela.CursosLista.RemoveAll(delegate (Curso DelCurso)
             //{
             //    return DelCurso.NombreCurso == "103";
