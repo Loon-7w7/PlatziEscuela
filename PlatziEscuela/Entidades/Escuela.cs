@@ -13,7 +13,7 @@ namespace PlatziEscuela.Entidades
         public string Pais { get; set; }
         public string Ciudad { get; set; }
         public TiposDeEscuela TipoEscuerla { get; set; }
-        public Curso[] CursosArreglo { get; set; }
+        public List<Curso> CursosLista { get; set; }
 
 
         public Escuela(string Nombre, int AñorDeCreacion) => (this.Nombre, this.AñorDeCreacion) = (Nombre, AñorDeCreacion);
