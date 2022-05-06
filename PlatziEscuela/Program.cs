@@ -45,7 +45,6 @@ namespace PlatziEscuela
 
            
         }
-
         private static void ImprimirCursos(Curso[] arregloCursos)
         {
             foreach(var CursosN in arregloCursos)
