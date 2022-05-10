@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using PlatziEscuela.Entidades;
 using System.Linq;
+using PlatziEscuela.Util;
 
 namespace PlatziEscuela.App
 {
@@ -36,6 +37,18 @@ namespace PlatziEscuela.App
         }
 
 
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Dic) 
+        {
+            foreach (var Dicobjeto in Dic)
+            {
+                Printer.EscirbirTitulo(Dicobjeto.Key.ToString());
+ 
+                foreach (var Valor in Dicobjeto.Value)
+                {
+                    Console.WriteLine(Valor);
+                }
+            }
+        }
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDicionario() 
         {
             

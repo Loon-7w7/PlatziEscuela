@@ -23,7 +23,8 @@ namespace PlatziEscuela
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
 
-            
+            var Dictem = Engine.GetDicionario();
+            Engine.ImprimirDiccionario(Dictem);
         }
 
         private static bool Predicado(Curso objCurso)
