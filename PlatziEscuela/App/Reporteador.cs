@@ -1,5 +1,6 @@
 ﻿using PlatziEscuela.Entidades;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,9 +18,17 @@ namespace PlatziEscuela.App
             _Diccionario = DicionarioObjetosEscuela;
         }
 
-        public IEnumerable<Evalucaiones> GetListaDeEvaluaciones()
+        public IEnumerable<Escuela> GetListaDeEvaluaciones()
         {
-            _Diccionario[LlaveDiccionario.Evaluacione];
+            IEnumerable<Escuela> Respuesta;
+            if (_Diccionario.TryGetValue(LlaveDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> Lista))
+            {
+                Respuesta = Lista.Cast<Escuela>();
+            }
+            {
+                Respuesta = null;
+            }
+            return Respuesta;
         }
     }
 }
