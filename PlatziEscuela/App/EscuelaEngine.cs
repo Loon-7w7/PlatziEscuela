@@ -225,13 +225,14 @@ namespace PlatziEscuela.App
         }
         private void InicializarEvaluaciones()
         {
+            var NumRandom = new Random();
             foreach (var curso in ObjeEscuela.CursosLista)
             {
                 foreach (var asigna in curso.ListaDeAsiganturas)
                 {
                     foreach (var alum in curso.ListaDeAlumnos)
                     {
-                        var NumRandom = new Random(System.Environment.TickCount);
+                        
                         for (int i = 0; i < 5; i++)
                         {
                             var evaluacion = new Evalucaiones
@@ -239,7 +240,7 @@ namespace PlatziEscuela.App
                                 NombreObjetoEscuela = $"Evaluación N°{i + 1} de {asigna.NombreObjetoEscuela}",
                                 ObjAlumno = alum,
                                 ObjAsignatura = asigna,
-                                Calificacion = MathF.Round((float)(NumRandom.NextDouble() * 5),2)
+                                Calificacion = MathF.Round((float)NumRandom.NextDouble() * 5,2)
                         };
                             
                             alum.ListaEvaluaciones.Add(evaluacion);
