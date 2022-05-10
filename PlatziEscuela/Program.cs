@@ -25,7 +25,7 @@ namespace PlatziEscuela
             Engine.InicialicarValoresDelPrograma();
 
             var Reported = new Reporteador(Engine.GetDicionario());
-            
+            var evalList = Reported.GetListaDeEvaluaciones();
         }
         private static void acciOnDelEvento(object sender, EventArgs e)
         {

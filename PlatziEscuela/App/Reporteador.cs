@@ -18,17 +18,34 @@ namespace PlatziEscuela.App
             _Diccionario = DicionarioObjetosEscuela;
         }
 
-        public IEnumerable<Escuela> GetListaDeEvaluaciones()
+        public IEnumerable<Evalucaiones> GetListaDeEvaluaciones()
         {
-            IEnumerable<Escuela> Respuesta;
-            if (_Diccionario.TryGetValue(LlaveDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> Lista))
+            if (_Diccionario.TryGetValue(LlaveDiccionario.Evaluacione, out IEnumerable<ObjetoEscuelaBase> Lista))
             {
-                Respuesta = Lista.Cast<Escuela>();
+                return Lista.Cast<Evalucaiones>();
             }
             {
-                Respuesta = null;
+                return new List<Evalucaiones>();
             }
-            return Respuesta;
+            
+        }
+        public IEnumerable<string> GetListaDeAsignaturas()
+        {
+            var ListaDeEvaluaciones = GetListaDeEvaluaciones();
+
+
+
+            return (from Evalucaiones eval in ListaDeEvaluaciones
+                   where eval.Calificacion > 3.0f
+                   select eval.ObjAsignatura.NombreObjetoEscuela).Distinct();
+            
+
+        }
+
+        public Dictionary<string, IEnumerable<Evalucaiones>> GetDicEvaluaXAsig()
+        {
+            var dictaRta = new Dictionary<string, IEnumerable<Evalucaiones>>();
+            return dictaRta;
         }
     }
 }
