@@ -60,6 +60,26 @@ namespace PlatziEscuela.App
             }
         }
 
+        public List<ObjetoEscuelaBase> GetObejtosEscuela()
+        {
+            var ListaObejto = new List<ObjetoEscuelaBase>();
+            ListaObejto.Add(ObjeEscuela);
+            ListaObejto.AddRange(ObjeEscuela.CursosLista);
+
+            foreach (var curso in ObjeEscuela.CursosLista) 
+            {
+                ListaObejto.AddRange(curso.ListaDeAsiganturas);
+                ListaObejto.AddRange(curso.ListaDeAlumnos);
+
+                foreach ( var Alum in curso.ListaDeAlumnos) 
+                {
+                    ListaObejto.AddRange(Alum.ListaEvaluaciones);
+                }
+            }
+           
+            return ListaObejto;
+        }
+
         private void InicializarAsignaturas()
         {
             foreach (var Curso in ObjeEscuela.CursosLista) 
@@ -108,4 +128,5 @@ namespace PlatziEscuela.App
 
         }
     }
+    
 }
