@@ -24,10 +24,7 @@ namespace PlatziEscuela
             ImprimirCursosEscuela(Engine.ObjeEscuela);
             var ListaDeObjetos = Engine.GetObejtosEscuela();
 
-            var ListaIlugar = from obj in ListaDeObjetos
-                              where obj is ILugar
-                              select (ILugar) obj;
-            //Engine.ObjeEscuela.LimpiarLugar();
+           
 
         }
 

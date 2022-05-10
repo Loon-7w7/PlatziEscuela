@@ -35,25 +35,45 @@ namespace PlatziEscuela.App
             InicializarEvaluaciones();
         }
 
-       
 
-        public List<ObjetoEscuelaBase> GetObejtosEscuela()
+        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones,
+            out int ConteoAlumnos,
+            out int ConteoAsignaturas,
+            out int ConteoCursos,
+            bool TraerEvaluciones = true,
+            bool TraerAlumnos = true,
+            bool TraerAsignaturas = true,
+            bool TraerCuros = true)
         {
+
+            ConteoAlumnos = ConteoAsignaturas = ConteoEvaluaciones = 0;
             var ListaObejto = new List<ObjetoEscuelaBase>();
             ListaObejto.Add(ObjeEscuela);
-            ListaObejto.AddRange(ObjeEscuela.CursosLista);
+            if (TraerCuros)
+                ListaObejto.AddRange(ObjeEscuela.CursosLista);
 
-            foreach (var curso in ObjeEscuela.CursosLista) 
+            ConteoCursos = ObjeEscuela.CursosLista.Count;
+            foreach (var curso in ObjeEscuela.CursosLista)
             {
-                ListaObejto.AddRange(curso.ListaDeAsiganturas);
-                ListaObejto.AddRange(curso.ListaDeAlumnos);
+                ConteoAsignaturas += curso.ListaDeAsiganturas.Count;
+                ConteoAlumnos += curso.ListaDeAlumnos.Count;
+                if (TraerAsignaturas)
+                    ListaObejto.AddRange(curso.ListaDeAsiganturas);
+                if (TraerAlumnos)
+                    ListaObejto.AddRange(curso.ListaDeAlumnos);
 
-                foreach ( var Alum in curso.ListaDeAlumnos) 
+                if (TraerEvaluciones)
                 {
-                    ListaObejto.AddRange(Alum.ListaEvaluaciones);
+                    
+                    foreach (var Alum in curso.ListaDeAlumnos)
+                    {
+                        ListaObejto.AddRange(Alum.ListaEvaluaciones);
+                        ConteoEvaluaciones += Alum.ListaEvaluaciones.Count;
+                    }
                 }
             }
-            return ListaObejto;
+            return (ListaObejto);
         }
         #region Metodos de carga
         private void InicializarAsignaturas()
