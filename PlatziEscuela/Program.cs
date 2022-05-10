@@ -18,17 +18,23 @@ namespace PlatziEscuela
 
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit += acciOnDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o, s ) => Printer.GenerarSonidoBeep(2000,1000,1);
+
             var Engine = new EscuelaEngine();
             Engine.InicialicarValoresDelPrograma();
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
-            ImprimirCursosEscuela(Engine.ObjeEscuela);
-            var ListaDeObjetos = Engine.GetObejtosEscuela();
+            //ImprimirCursosEscuela(Engine.ObjeEscuela);
 
-            var ListaIlugar = from obj in ListaDeObjetos
-                              where obj is ILugar
-                              select (ILugar) obj;
-            //Engine.ObjeEscuela.LimpiarLugar();
+            var Dictem = Engine.GetDicionario();
+            Engine.ImprimirDiccionario(Dictem, true);
+        }
 
+        private static void acciOnDelEvento(object sender, EventArgs e)
+        {
+            Printer.EscirbirTitulo("Saliendo...");
+            Printer.GenerarSonidoBeep(3000,1000);
+            Printer.EscirbirTitulo("Salio");
         }
 
         private static bool Predicado(Curso objCurso)

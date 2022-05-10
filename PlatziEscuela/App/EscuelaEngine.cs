@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using PlatziEscuela.Entidades;
 using System.Linq;
+using PlatziEscuela.Util;
 
 namespace PlatziEscuela.App
 {
@@ -35,27 +36,147 @@ namespace PlatziEscuela.App
             InicializarEvaluaciones();
         }
 
-       
 
-        public List<ObjetoEscuelaBase> GetObejtosEscuela()
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Dic , bool ImRpimirEval = false) 
         {
-            var ListaObejto = new List<ObjetoEscuelaBase>();
-            ListaObejto.Add(ObjeEscuela);
-            ListaObejto.AddRange(ObjeEscuela.CursosLista);
-
-            foreach (var curso in ObjeEscuela.CursosLista) 
+            foreach (var DicKey in Dic)
             {
-                ListaObejto.AddRange(curso.ListaDeAsiganturas);
-                ListaObejto.AddRange(curso.ListaDeAlumnos);
-
-                foreach ( var Alum in curso.ListaDeAlumnos) 
+                Printer.EscirbirTitulo(DicKey.Key.ToString());
+ 
+                foreach (var Valor in DicKey.Value)
                 {
-                    ListaObejto.AddRange(Alum.ListaEvaluaciones);
+                    switch (DicKey.Key)
+                    {
+                        case LlaveDiccionario.Evaluacione:
+                            if (ImRpimirEval)
+                                Console.WriteLine(Valor);
+                            break;
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine($"Escuela: {Valor}");
+                            break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine($"Alumno: {Valor.NombreObjetoEscuela}");
+                            break;
+                        case LlaveDiccionario.Curso:
+                            var ListaCursoTemporal = Valor as Curso;
+                            if (ListaCursoTemporal != null)
+                            {
+                                int CantidadAlunos = ListaCursoTemporal.ListaDeAlumnos.Count();
+                                Console.WriteLine($"Curso: {Valor.NombreObjetoEscuela} Cantidad De Alunmos: {CantidadAlunos}");
+                            }
+                           
+                            break;
+                        default:
+                            Console.WriteLine(Valor);
+                            break;
+                    } 
                 }
             }
-            return ListaObejto;
+        }
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDicionario() 
+        {
+            
+            var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela,new[] {ObjeEscuela});
+            diccionario.Add(LlaveDiccionario.Curso, ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>());
+
+            var ListaTemporalEvaluaciones = new List<Evalucaiones>();
+            var ListaTemporalAsignaturas = new List<Asignatura>();
+            var ListaTemporalAlumnos = new List<Alumno>();
+            foreach (var curso in ObjeEscuela.CursosLista) 
+            {
+
+                ListaTemporalAsignaturas.AddRange(curso.ListaDeAsiganturas);
+                ListaTemporalAlumnos.AddRange(curso.ListaDeAlumnos);
+                
+                foreach (var Alu in curso.ListaDeAlumnos)
+                {
+                    ListaTemporalEvaluaciones.AddRange(Alu.ListaEvaluaciones);
+                }
+               
+            }
+            diccionario.Add(LlaveDiccionario.Asignatura, ListaTemporalAsignaturas.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Alumno, ListaTemporalAlumnos.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Evaluacione, ListaTemporalEvaluaciones.Cast<ObjetoEscuelaBase>());
+            return diccionario;
         }
 
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
+            bool TraerEvaluciones = true,
+            bool TraerAlumnos = true,
+            bool TraerAsignaturas = true,
+            bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out int dummy, out dummy, out dummy, out dummy);
+        }
+
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out int dummy, out dummy, out dummy);
+        }
+
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones, out int ConteoCursos,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out int dummy, out dummy);
+        }
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones, out int ConteoCursos, out int ConteoAsignaturas,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out ConteoAsignaturas, out int dummy);
+        }
+        public IReadOnlyList <ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones,
+            out int ConteoAlumnos,
+            out int ConteoAsignaturas,
+            out int ConteoCursos,
+            bool TraerEvaluciones = true,
+            bool TraerAlumnos = true,
+            bool TraerAsignaturas = true,
+            bool TraerCuros = true)
+        {
+
+            ConteoAlumnos = ConteoAsignaturas = ConteoEvaluaciones = 0;
+            var ListaObejto = new List<ObjetoEscuelaBase>();
+            ListaObejto.Add(ObjeEscuela);
+            if (TraerCuros)
+                ListaObejto.AddRange(ObjeEscuela.CursosLista);
+
+            ConteoCursos = ObjeEscuela.CursosLista.Count;
+            foreach (var curso in ObjeEscuela.CursosLista)
+            {
+                ConteoAsignaturas += curso.ListaDeAsiganturas.Count;
+                ConteoAlumnos += curso.ListaDeAlumnos.Count;
+                if (TraerAsignaturas)
+                    ListaObejto.AddRange(curso.ListaDeAsiganturas);
+                if (TraerAlumnos)
+                    ListaObejto.AddRange(curso.ListaDeAlumnos);
+
+                if (TraerEvaluciones)
+                {
+                    
+                    foreach (var Alum in curso.ListaDeAlumnos)
+                    {
+                        ListaObejto.AddRange(Alum.ListaEvaluaciones);
+                        ConteoEvaluaciones += Alum.ListaEvaluaciones.Count;
+                    }
+                }
+            }
+            return ListaObejto.AsReadOnly();
+        }
         #region Metodos de carga
         private void InicializarAsignaturas()
         {
@@ -104,13 +225,14 @@ namespace PlatziEscuela.App
         }
         private void InicializarEvaluaciones()
         {
+            var NumRandom = new Random();
             foreach (var curso in ObjeEscuela.CursosLista)
             {
                 foreach (var asigna in curso.ListaDeAsiganturas)
                 {
                     foreach (var alum in curso.ListaDeAlumnos)
                     {
-                        var NumRandom = new Random(System.Environment.TickCount);
+                        
                         for (int i = 0; i < 5; i++)
                         {
                             var evaluacion = new Evalucaiones
@@ -118,8 +240,9 @@ namespace PlatziEscuela.App
                                 NombreObjetoEscuela = $"Evaluación N°{i + 1} de {asigna.NombreObjetoEscuela}",
                                 ObjAlumno = alum,
                                 ObjAsignatura = asigna,
-                                Calificacion = (float)(NumRandom.NextDouble() * 5)
-                            };
+                                Calificacion = MathF.Round((float)NumRandom.NextDouble() * 5,2)
+                        };
+                            
                             alum.ListaEvaluaciones.Add(evaluacion);
                         }
                     }
