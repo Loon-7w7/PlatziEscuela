@@ -4,6 +4,8 @@ using PlatziEscuela.Entidades;
 using PlatziEscuela.App;
 using PlatziEscuela.Util;
 using static System.Console;
+using System.Linq;
+using PlatziEscuela.Entidades.Interfaces;
 
 namespace PlatziEscuela
 {
@@ -21,6 +23,11 @@ namespace PlatziEscuela
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
             var ListaDeObjetos = Engine.GetObejtosEscuela();
+
+            var ListaIlugar = from obj in ListaDeObjetos
+                              where obj is ILugar
+                              select (ILugar) obj;
+            //Engine.ObjeEscuela.LimpiarLugar();
 
         }
 
