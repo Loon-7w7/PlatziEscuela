@@ -29,7 +29,6 @@ namespace PlatziEscuela
             var Dictem = Engine.GetDicionario();
             Engine.ImprimirDiccionario(Dictem, true);
         }
-
         private static void acciOnDelEvento(object sender, EventArgs e)
         {
             Printer.EscirbirTitulo("Saliendo...");
