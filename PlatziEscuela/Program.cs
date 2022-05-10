@@ -22,7 +22,12 @@ namespace PlatziEscuela
             Engine.InicialicarValoresDelPrograma();
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
-            var ListaDeObjetos = Engine.GetObejtosEscuela();
+
+            var ListaDeObjetos = Engine.GetObejtosEscuela(
+            out int ConteoEvaluaciones,
+            out int ConteoAlumnos,
+            out int ConteoAsignaturas,
+            out int ConteoCursos);
 
            
 
