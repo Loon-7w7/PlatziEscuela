@@ -42,8 +42,25 @@ namespace PlatziEscuela.App
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
             diccionario.Add(LlaveDiccionario.Escuela,new[] {ObjeEscuela});
             diccionario.Add(LlaveDiccionario.Curso, ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>());
-            diccionario [LlaveDiccionario.Curso] = ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>();
 
+            var ListaTemporalEvaluaciones = new List<Evalucaiones>();
+            var ListaTemporalAsignaturas = new List<Asignatura>();
+            var ListaTemporalAlumnos = new List<Alumno>();
+            foreach (var curso in ObjeEscuela.CursosLista) 
+            {
+
+                ListaTemporalAsignaturas.AddRange(curso.ListaDeAsiganturas);
+                ListaTemporalAlumnos.AddRange(curso.ListaDeAlumnos);
+                
+                foreach (var Alu in curso.ListaDeAlumnos)
+                {
+                    ListaTemporalEvaluaciones.AddRange(Alu.ListaEvaluaciones);
+                }
+               
+            }
+            diccionario.Add(LlaveDiccionario.Asignatura, ListaTemporalAsignaturas.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Alumno, ListaTemporalAlumnos.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Evaluacione, ListaTemporalEvaluaciones.Cast<ObjetoEscuelaBase>());
             return diccionario;
         }
 

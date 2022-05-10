@@ -9,7 +9,7 @@ namespace PlatziEscuela.Entidades
             Curso,
             Alumno,
             Asignatura,
-            valuacione,
+            Evaluacione,
             Escuela
 }
    
