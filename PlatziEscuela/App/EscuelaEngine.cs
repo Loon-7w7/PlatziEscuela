@@ -36,7 +36,7 @@ namespace PlatziEscuela.App
         }
 
 
-        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
             bool TraerEvaluciones = true,
             bool TraerAlumnos = true,
             bool TraerAsignaturas = true,
@@ -45,7 +45,7 @@ namespace PlatziEscuela.App
             return GetObejtosEscuela(out int dummy, out dummy, out dummy, out dummy);
         }
 
-        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
             out int ConteoEvaluaciones,
            bool TraerEvaluciones = true,
            bool TraerAlumnos = true,
@@ -55,7 +55,7 @@ namespace PlatziEscuela.App
             return GetObejtosEscuela(out ConteoEvaluaciones, out int dummy, out dummy, out dummy);
         }
 
-        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
             out int ConteoEvaluaciones, out int ConteoCursos,
            bool TraerEvaluciones = true,
            bool TraerAlumnos = true,
@@ -64,7 +64,7 @@ namespace PlatziEscuela.App
         {
             return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out int dummy, out dummy);
         }
-        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
             out int ConteoEvaluaciones, out int ConteoCursos, out int ConteoAsignaturas,
            bool TraerEvaluciones = true,
            bool TraerAlumnos = true,
@@ -73,7 +73,7 @@ namespace PlatziEscuela.App
         {
             return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out ConteoAsignaturas, out int dummy);
         }
-        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+        public IReadOnlyList <ObjetoEscuelaBase> GetObejtosEscuela(
             out int ConteoEvaluaciones,
             out int ConteoAlumnos,
             out int ConteoAsignaturas,
@@ -110,7 +110,7 @@ namespace PlatziEscuela.App
                     }
                 }
             }
-            return (ListaObejto);
+            return ListaObejto.AsReadOnly();
         }
         #region Metodos de carga
         private void InicializarAsignaturas()
