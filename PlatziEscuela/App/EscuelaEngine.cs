@@ -55,7 +55,6 @@ namespace PlatziEscuela.App
             }
             return ListaObejto;
         }
-
         #region Metodos de carga
         private void InicializarAsignaturas()
         {
