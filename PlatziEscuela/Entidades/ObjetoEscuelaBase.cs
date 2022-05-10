@@ -13,5 +13,10 @@ namespace PlatziEscuela.Entidades
         {
             IDentificadorunico = Guid.NewGuid().ToString();
         }
+
+        public override string ToString()
+        {
+            return $"{NombreObjetoEscuela} {IDentificadorunico}"; 
+        }
     }
 }
