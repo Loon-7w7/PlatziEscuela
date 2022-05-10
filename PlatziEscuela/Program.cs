@@ -21,10 +21,10 @@ namespace PlatziEscuela
             var Engine = new EscuelaEngine();
             Engine.InicialicarValoresDelPrograma();
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
-            ImprimirCursosEscuela(Engine.ObjeEscuela);
+            //ImprimirCursosEscuela(Engine.ObjeEscuela);
 
             var Dictem = Engine.GetDicionario();
-            Engine.ImprimirDiccionario(Dictem);
+            Engine.ImprimirDiccionario(Dictem, true);
         }
 
         private static bool Predicado(Curso objCurso)

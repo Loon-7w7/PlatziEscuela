@@ -39,30 +39,37 @@ namespace PlatziEscuela.App
 
         public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Dic , bool ImRpimirEval = false) 
         {
-            foreach (var Dicobjeto in Dic)
+            foreach (var DicKey in Dic)
             {
-                Printer.EscirbirTitulo(Dicobjeto.Key.ToString());
+                Printer.EscirbirTitulo(DicKey.Key.ToString());
  
-                foreach (var Valor in Dicobjeto.Value)
+                foreach (var Valor in DicKey.Value)
                 {
-                    if (Valor is Evalucaiones)
+                    switch (DicKey.Key)
                     {
-                        if (ImRpimirEval)
+                        case LlaveDiccionario.Evaluacione:
+                            if (ImRpimirEval)
+                                Console.WriteLine(Valor);
+                            break;
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine($"Escuela: {Valor}");
+                            break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine($"Alumno: {Valor.NombreObjetoEscuela}");
+                            break;
+                        case LlaveDiccionario.Curso:
+                            var ListaCursoTemporal = Valor as Curso;
+                            if (ListaCursoTemporal != null)
+                            {
+                                int CantidadAlunos = ListaCursoTemporal.ListaDeAlumnos.Count();
+                                Console.WriteLine($"Curso: {Valor.NombreObjetoEscuela} Cantidad De Alunmos: {CantidadAlunos}");
+                            }
+                           
+                            break;
+                        default:
                             Console.WriteLine(Valor);
-                    }
-                    else if (Valor is Escuela)
-                    {
-                        Console.WriteLine($"Escuela: {Valor}");
-                    }
-                    else if (Valor is Alumno)
-                    {
-                        Console.WriteLine($"Alumno: {Valor.NombreObjetoEscuela}");
-                    }
-                    else 
-                    {
-                        Console.WriteLine(Valor);
-                    }
-                    
+                            break;
+                    } 
                 }
             }
         }
@@ -232,8 +239,9 @@ namespace PlatziEscuela.App
                                 NombreObjetoEscuela = $"Evaluación N°{i + 1} de {asigna.NombreObjetoEscuela}",
                                 ObjAlumno = alum,
                                 ObjAsignatura = asigna,
-                                Calificacion = (float)(NumRandom.NextDouble() * 5)
-                            };
+                                Calificacion = MathF.Round((float)(NumRandom.NextDouble() * 5),2)
+                        };
+                            
                             alum.ListaEvaluaciones.Add(evaluacion);
                         }
                     }
