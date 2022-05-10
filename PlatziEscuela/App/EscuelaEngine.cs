@@ -37,7 +37,7 @@ namespace PlatziEscuela.App
         }
 
 
-        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Dic) 
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> Dic , bool ImRpimirEval = false) 
         {
             foreach (var Dicobjeto in Dic)
             {
@@ -45,7 +45,24 @@ namespace PlatziEscuela.App
  
                 foreach (var Valor in Dicobjeto.Value)
                 {
-                    Console.WriteLine(Valor);
+                    if (Valor is Evalucaiones)
+                    {
+                        if (ImRpimirEval)
+                            Console.WriteLine(Valor);
+                    }
+                    else if (Valor is Escuela)
+                    {
+                        Console.WriteLine($"Escuela: {Valor}");
+                    }
+                    else if (Valor is Alumno)
+                    {
+                        Console.WriteLine($"Alumno: {Valor.NombreObjetoEscuela}");
+                    }
+                    else 
+                    {
+                        Console.WriteLine(Valor);
+                    }
+                    
                 }
             }
         }
