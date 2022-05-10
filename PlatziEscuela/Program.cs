@@ -26,12 +26,37 @@ namespace PlatziEscuela
             Printer.DrawLine(20);
             Printer.EscirbirTitulo("Prueba De Polimorfismo");
             var alumteste = new Alumno { NombreObjetoEscuela = "Claire Underwood" };
-            ObjetoEscuelaBase ObjetSchool = alumteste;
+            
 
+            //AlumTest
             Printer.EscirbirTitulo("Alumno");
             WriteLine($"Alumno: {alumteste.NombreObjetoEscuela}");
+            WriteLine($"alumno: {alumteste.IDentificadorunico}");
+            WriteLine($"alumno: {alumteste.GetType()}");
+            //objeto escuela base
+            ObjetoEscuelaBase ObjetSchool = alumteste;
             Printer.EscirbirTitulo("Objeto");
             WriteLine($"Alumno: {ObjetSchool.NombreObjetoEscuela}");
+            WriteLine($"alumno: {ObjetSchool.IDentificadorunico}");
+            WriteLine($"alumno: {ObjetSchool.GetType()}");
+            // obejtoDummy
+            var ObjDummy = new ObjetoEscuelaBase() {NombreObjetoEscuela = "Frank underWood" };
+            WriteLine($"Alumno: {ObjDummy.NombreObjetoEscuela}");
+            WriteLine($"alumno: {ObjDummy.IDentificadorunico}");
+            WriteLine($"alumno: {ObjDummy.GetType()}");
+            // Evaluacion
+            var evalu = new Evalucaiones() { NombreObjetoEscuela = "Evaluacion matematicas", Calificacion = 4.5f };
+            Printer.EscirbirTitulo("Escuela");
+            WriteLine($"Evaluaccion: {evalu.NombreObjetoEscuela}");
+            WriteLine($"Evaluaccion: {evalu.IDentificadorunico}");
+            WriteLine($"Evaluaccion: {evalu.Calificacion}");
+            WriteLine($"Evaluaccion: {evalu.GetType()}");
+            // ojeto evaluacion
+            ObjetSchool = evalu;
+            Printer.EscirbirTitulo("obejtoEscuelaBase");
+            WriteLine($"Alumno: {ObjetSchool.NombreObjetoEscuela}");
+            WriteLine($"alumno: {ObjetSchool.IDentificadorunico}");
+            WriteLine($"alumno: {ObjetSchool.GetType()}");
         }
 
         private static bool Predicado(Curso objCurso)
