@@ -43,7 +43,7 @@ namespace PlatziEscuela.Entidades
             {
                 Curso.LimpiarLugar();
             }
-            WriteLine($"Escuela {NombreObjetoEscuela} esta Limpia");
+            Printer.EscirbirTitulo($"Escuela {NombreObjetoEscuela} esta Limpia");
         }
     }
 }
