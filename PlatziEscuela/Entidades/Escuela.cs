@@ -6,10 +6,9 @@ using static System.Console;
 
 namespace PlatziEscuela.Entidades
 {
-    public class Escuela
+    public class Escuela : ObjetoEscuelaBase
     {
-        public string IdentidicadorUnico { get; private set; } = Guid.NewGuid().ToString();
-        public string Nombre { get; set; }
+
         public int AñorDeCreacion { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
@@ -17,21 +16,21 @@ namespace PlatziEscuela.Entidades
         public List<Curso> CursosLista { get; set; }
 
 
-        public Escuela(string Nombre, int AñorDeCreacion) => (this.Nombre, this.AñorDeCreacion) = (Nombre, AñorDeCreacion);
+        public Escuela(string Nombre, int AñorDeCreacion) => (this.NombreObjetoEscuela, this.AñorDeCreacion) = (Nombre, AñorDeCreacion);
 
         public Escuela(string Nombre, int AñorDeCreacion,
             TiposDeEscuela TipoEscuela,
             string Pais = "",
             string Ciudad = "") {
 
-            this.Nombre = Nombre;
+            this.NombreObjetoEscuela = Nombre;
             this.AñorDeCreacion = AñorDeCreacion;
             this.Pais = Pais;
             this.Ciudad = Ciudad;
         } 
         public override string ToString()
         {
-            return $"Nombre Escuela: {Nombre}, Tipo Escuela: {TipoEscuerla},\nPais: {Pais}, Ciudad: {Ciudad}";
+            return $"Nombre Escuela: {NombreObjetoEscuela}, Tipo Escuela: {TipoEscuerla},\nPais: {Pais}, Ciudad: {Ciudad}";
         } 
     }
 }

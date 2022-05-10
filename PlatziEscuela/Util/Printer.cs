@@ -8,7 +8,7 @@ namespace PlatziEscuela.Util
     public static class Printer
     {
         
-        public static void DibujaRlinea(int TamañoLinea = 10) 
+        public static void DrawLine(int TamañoLinea = 10) 
         {
             WriteLine("".PadLeft(TamañoLinea, '='));
         }
@@ -16,9 +16,9 @@ namespace PlatziEscuela.Util
         public static void EscirbirTitulo(string Titulo)
         {
             var TamañoDeLinea = Titulo.Length + 4;
-            DibujaRlinea(TamañoDeLinea);
+            DrawLine(TamañoDeLinea);
             WriteLine($"| {Titulo} |");
-            DibujaRlinea(TamañoDeLinea);
+            DrawLine(TamañoDeLinea);
 
         }
 

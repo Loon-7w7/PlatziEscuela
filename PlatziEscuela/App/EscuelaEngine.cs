@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PlatziEscuela.App
 {
-    public class EscuelaEngine
+    public sealed class EscuelaEngine
     {
         public Escuela ObjeEscuela { get; set; }
         private const string NombreEscuela = "Platzi Academy";
@@ -30,7 +30,7 @@ namespace PlatziEscuela.App
             //Inicializando Asignaturas de la escuela
             InicializarAsignaturas();
             //Inicializando Alumnos de la escuela
-            
+
             //Inicializando Evaluaciones de la escuela
             InicializarEvaluaciones();
         }
@@ -48,12 +48,11 @@ namespace PlatziEscuela.App
                         {
                             var evaluacion = new Evalucaiones
                             {
-                                NombreEvaluaciones = $"Evaluación N°{i + 1} de {asigna.NombreAsignatura}",
+                                NombreObjetoEscuela = $"Evaluación N°{i + 1} de {asigna.NombreObjetoEscuela}",
                                 ObjAlumno = alum,
                                 ObjAsignatura = asigna,
                                 Calificacion = (float)(NumRandom.NextDouble() * 5)
                             };
-
                             alum.ListaEvaluaciones.Add(evaluacion);
                         }
                     }
@@ -65,12 +64,12 @@ namespace PlatziEscuela.App
         {
             foreach (var Curso in ObjeEscuela.CursosLista) 
             {
-                List<Asignatura> ListaAsignaturas = new List<Asignatura>() 
+                List<Asignatura> ListaAsignaturas = new List<Asignatura>()
                 {
-                    new Asignatura { NombreAsignatura ="Matematicas" },
-                    new Asignatura { NombreAsignatura ="Educacion Fisica" },
-                    new Asignatura { NombreAsignatura ="Castellano" },
-                    new Asignatura { NombreAsignatura ="Ciencias Naturales" }
+                    new Asignatura { NombreObjetoEscuela ="Matematicas" },
+                    new Asignatura { NombreObjetoEscuela ="Educacion Fisica" },
+                    new Asignatura { NombreObjetoEscuela ="Castellano" },
+                    new Asignatura { NombreObjetoEscuela ="Ciencias Naturales" }
                 };
                 Curso.ListaDeAsiganturas = ListaAsignaturas;
             }
@@ -85,19 +84,19 @@ namespace PlatziEscuela.App
             var ListadeAlunnos = from Nombre1 in PrimerNombre
                                  from Nombre2 in SegundoNombre
                                  from Apellido in ApeliidoPaterno
-                                 select new Alumno { NombreAlumno = $"{Nombre1} {Nombre2} {Apellido}" };
-            return ListadeAlunnos.OrderBy( (Alum)=>Alum.IdentidicadorUnico ).Take(CantidadDeAlunos).ToList();
+                                 select new Alumno { NombreObjetoEscuela = $"{Nombre1} {Nombre2} {Apellido}" };
+            return ListadeAlunnos.OrderBy( (Alum)=>Alum.IDentificadorunico ).Take(CantidadDeAlunos).ToList();
         }
 
         private void InicializarCursos()
         {
             ObjeEscuela.CursosLista = new List<Curso>() {
-            new Curso(){ NombreCurso = "101", TipoDeJornada = TiposJornada.Mañana },
-            new Curso(){ NombreCurso = "102", TipoDeJornada = TiposJornada.Mañana },
-            new Curso(){ NombreCurso = "103", TipoDeJornada = TiposJornada.Mañana },
-            new Curso(){ NombreCurso = "201", TipoDeJornada = TiposJornada.Tarde  },
-            new Curso(){ NombreCurso = "202", TipoDeJornada = TiposJornada.Tarde  },
-            new Curso(){ NombreCurso = "202", TipoDeJornada = TiposJornada.Mañana }
+            new Curso(){ NombreObjetoEscuela = "101", TipoDeJornada = TiposJornada.Mañana },
+            new Curso(){ NombreObjetoEscuela = "102", TipoDeJornada = TiposJornada.Mañana },
+            new Curso(){ NombreObjetoEscuela = "103", TipoDeJornada = TiposJornada.Mañana },
+            new Curso(){ NombreObjetoEscuela = "201", TipoDeJornada = TiposJornada.Tarde  },
+            new Curso(){ NombreObjetoEscuela = "202", TipoDeJornada = TiposJornada.Tarde  },
+            new Curso(){ NombreObjetoEscuela = "202", TipoDeJornada = TiposJornada.Mañana }
             };
             Random NumRandom = new Random();
           

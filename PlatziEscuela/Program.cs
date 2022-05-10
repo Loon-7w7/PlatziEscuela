@@ -20,11 +20,23 @@ namespace PlatziEscuela
             Engine.InicialicarValoresDelPrograma();
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
+
+            Printer.DrawLine(20);
+            Printer.DrawLine(20);
+            Printer.DrawLine(20);
+            Printer.EscirbirTitulo("Prueba De Polimorfismo");
+            var alumteste = new Alumno { NombreObjetoEscuela = "Claire Underwood" };
+            ObjetoEscuelaBase ObjetSchool = alumteste;
+
+            Printer.EscirbirTitulo("Alumno");
+            WriteLine($"Alumno: {alumteste.NombreObjetoEscuela}");
+            Printer.EscirbirTitulo("Objeto");
+            WriteLine($"Alumno: {ObjetSchool.NombreObjetoEscuela}");
         }
 
         private static bool Predicado(Curso objCurso)
         {
-            return objCurso.NombreCurso == "103";
+            return objCurso.NombreObjetoEscuela == "103";
         }
 
         private static void ImprimirCursosEscuela(Escuela objEscuela)
@@ -43,7 +55,7 @@ namespace PlatziEscuela
         {
             foreach(var CursosN in ListaCursos)
             {
-                WriteLine($"Nombre: {CursosN.NombreCurso}, Id: {CursosN.IdentidicadorUnico}, Tipo De Jornada: {CursosN.TipoDeJornada}");
+                WriteLine($"Nombre: {CursosN.NombreObjetoEscuela}, Id: {CursosN.IDentificadorunico}, Tipo De Jornada: {CursosN.TipoDeJornada}");
             }
         }
     }
