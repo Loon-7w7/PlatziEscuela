@@ -4,10 +4,8 @@ using System.Text;
 
 namespace PlatziEscuela.Entidades
 {
-    public class Asignatura
+    public class Asignatura : ObjetoEscuelaBase
     {
-        public string IdentidicadorUnico { get; private set; }
-        public string NombreAsignatura { get; set; }
-        public Asignatura() => IdentidicadorUnico = Guid.NewGuid().ToString();
+
     }
 }

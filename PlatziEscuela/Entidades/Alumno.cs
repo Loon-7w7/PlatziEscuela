@@ -4,11 +4,10 @@ using System.Text;
 
 namespace PlatziEscuela.Entidades
 {
-    public class Alumno
+    public class Alumno : ObjetoEscuelaBase
     {
-        public string IdentidicadorUnico { get; private set; }
-        public string NombreAlumno { get; set; }
-        public List<Evalucaiones> ListaEvaluaciones { get; set; }
-        public Alumno() => IdentidicadorUnico = Guid.NewGuid().ToString();
+
+        public List<Evalucaiones> ListaEvaluaciones { get; set; } = new List<Evalucaiones>();
+
     }
 }
