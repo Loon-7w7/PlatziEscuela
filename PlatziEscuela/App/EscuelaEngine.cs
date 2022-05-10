@@ -76,7 +76,6 @@ namespace PlatziEscuela.App
                     ListaObejto.AddRange(Alum.ListaEvaluaciones);
                 }
             }
-           
             return ListaObejto;
         }
 
