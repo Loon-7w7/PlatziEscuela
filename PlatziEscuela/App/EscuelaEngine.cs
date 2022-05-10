@@ -36,7 +36,13 @@ namespace PlatziEscuela.App
         }
 
 
-        
+        public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDicionario() 
+        {
+            var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add("Escuela",new[] {ObjeEscuela});
+            diccionario.Add("Curos", ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>());
+            return diccionario;
+        }
 
         public IReadOnlyList<ObjetoEscuelaBase> GetObejtosEscuela(
             bool TraerEvaluciones = true,

@@ -23,21 +23,7 @@ namespace PlatziEscuela
             Printer.EscirbirTitulo(TextoBienvenidaEscuela);
             ImprimirCursosEscuela(Engine.ObjeEscuela);
 
-            Dictionary<int, string> dicionario = new Dictionary<int, string>();
-
-            dicionario.Add(10,"JuanK");
-            dicionario.Add(23, "Lucas isos");
-            foreach (var keyValuePair in dicionario) 
-            {
-                WriteLine($"Key: {keyValuePair.Key} Valor: {keyValuePair.Value}");
-                WriteLine(dicionario[23]);
-            }
-
-            Printer.EscirbirTitulo("Otro Dicionario");
-
-            var dic = new Dictionary<string, string>();
-            dic["Luna"] = "cuerpo celeste que gira alrededdor de la tierra";
-            WriteLine(dic["Luna"]);
+            
         }
 
         private static bool Predicado(Curso objCurso)
