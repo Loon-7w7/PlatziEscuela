@@ -36,11 +36,14 @@ namespace PlatziEscuela.App
         }
 
 
-        public Dictionary<string, IEnumerable<ObjetoEscuelaBase>> GetDicionario() 
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDicionario() 
         {
-            var diccionario = new Dictionary<string, IEnumerable<ObjetoEscuelaBase>>();
-            diccionario.Add("Escuela",new[] {ObjeEscuela});
-            diccionario.Add("Curos", ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>());
+            
+            var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela,new[] {ObjeEscuela});
+            diccionario.Add(LlaveDiccionario.Curso, ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>());
+            diccionario [LlaveDiccionario.Curso] = ObjeEscuela.CursosLista.Cast<ObjetoEscuelaBase>();
+
             return diccionario;
         }
 
