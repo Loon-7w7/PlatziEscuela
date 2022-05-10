@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlatziEscuela.Entidades
 {
-    public  class ObjetoEscuelaBase
+    public abstract class ObjetoEscuelaBase
     {
         public string IDentificadorunico { get; private set; }
         public String NombreObjetoEscuela { get; set; }
