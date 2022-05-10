@@ -37,6 +37,43 @@ namespace PlatziEscuela.App
 
 
         public List<ObjetoEscuelaBase> GetObejtosEscuela(
+            bool TraerEvaluciones = true,
+            bool TraerAlumnos = true,
+            bool TraerAsignaturas = true,
+            bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out int dummy, out dummy, out dummy, out dummy);
+        }
+
+        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out int dummy, out dummy, out dummy);
+        }
+
+        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones, out int ConteoCursos,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out int dummy, out dummy);
+        }
+        public List<ObjetoEscuelaBase> GetObejtosEscuela(
+            out int ConteoEvaluaciones, out int ConteoCursos, out int ConteoAsignaturas,
+           bool TraerEvaluciones = true,
+           bool TraerAlumnos = true,
+           bool TraerAsignaturas = true,
+           bool TraerCuros = true)
+        {
+            return GetObejtosEscuela(out ConteoEvaluaciones, out ConteoCursos, out ConteoAsignaturas, out int dummy);
+        }
+        public List<ObjetoEscuelaBase> GetObejtosEscuela(
             out int ConteoEvaluaciones,
             out int ConteoAlumnos,
             out int ConteoAsignaturas,
