@@ -72,13 +72,16 @@ namespace PlatziEscuela.App
             var dicEvalxAsig = GetDicEvaluaXAsig();
             foreach (var AsigConEval in dicEvalxAsig)
             {
-                var dummmy = from Evalu in AsigConEval.Value
-                             group Evalu by Evalu.ObjAlumno.IDentificadorunico into GrupoEvaluacionAlumno
-                             select new
+                var promedioDeAlumnos = from Evalu in AsigConEval.Value
+                             group Evalu by new { Evalu.ObjAlumno.IDentificadorunico,Evalu.ObjAlumno.NombreObjetoEscuela }
+                             into GrupoEvaluacionAlumno
+                             select new AlumnoPromedio
                              {
-                                 alumnoId = GrupoEvaluacionAlumno.Key,
-                                 Promedio = GrupoEvaluacionAlumno.Average(evalua => evalua.Calificacion)
+                                 AlumnoID = GrupoEvaluacionAlumno.Key.IDentificadorunico,
+                                 NombreAlumno = GrupoEvaluacionAlumno.Key.NombreObjetoEscuela,
+                                 promeido = GrupoEvaluacionAlumno.Average(evalua => evalua.Calificacion)
                              };
+                Respuesta.Add(AsigConEval.Key,promedioDeAlumnos);
             }
             return Respuesta;
         }
