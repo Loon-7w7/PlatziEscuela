@@ -23,13 +23,10 @@ namespace PlatziEscuela
 
             var Engine = new EscuelaEngine();
             Engine.InicialicarValoresDelPrograma();
-            Printer.EscirbirTitulo(TextoBienvenidaEscuela);
-            //ImprimirCursosEscuela(Engine.ObjeEscuela);
 
-            var Dictem = Engine.GetDicionario();
-            Engine.ImprimirDiccionario(Dictem, true);
+            var Reported = new Reporteador(Engine.GetDicionario());
+            var evalList = Reported.GetListaDeEvaluaciones();
         }
-
         private static void acciOnDelEvento(object sender, EventArgs e)
         {
             Printer.EscirbirTitulo("Saliendo...");
