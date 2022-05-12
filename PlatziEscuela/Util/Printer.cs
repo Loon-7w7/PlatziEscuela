@@ -34,6 +34,10 @@ namespace PlatziEscuela.Util
                 Console.Beep(HZ,Tiempo);
             }
         }
+        public static void PresioneEscOenter()
+        {
+            WriteLine("\nPresione ENTER para continuar, presione ESC para volver al Menú...");
+        }
 
     }
 }
