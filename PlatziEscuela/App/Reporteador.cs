@@ -34,7 +34,6 @@ namespace PlatziEscuela.App
 
 
 
-
             return GetListaDeAsignaturas(out var dummy);
 
 
@@ -99,5 +98,6 @@ namespace PlatziEscuela.App
             }
             return Respuesta;
         }
+
     }
 }
