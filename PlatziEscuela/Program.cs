@@ -55,28 +55,33 @@ namespace PlatziEscuela
             }
             else
             {
-                try 
+                try
                 {
                     neweval.Calificacion = float.Parse(NotaString);
-                    if (neweval.Calificacion < 0 || neweval.Calificacion > 5) 
+                    if (neweval.Calificacion < 0 || neweval.Calificacion > 5)
                     {
                         throw new ArgumentOutOfRangeException("la nota de la evaluacion debe esatr entre 0 y 5");
 
                     }
-                    
+
                     WriteLine("El Nombre De La Evaluacion Ha Sido Ingresado Correctamente");
                 }
                 catch (ArgumentOutOfRangeException arge)
                 {
- 
+
                     WriteLine(arge.Message);
                     WriteLine("Salieo del programa...");
                 }
 
-                catch (Exception) 
+                catch (Exception)
                 {
                     Printer.EscirbirTitulo("El Valor de la nota no es un valor valido");
                     WriteLine("Salieo del programa...");
+                }
+                finally 
+                {
+                    Printer.EscirbirTitulo("Finally");
+                    Printer.GenerarSonidoBeep(2500, 500, 3);
                 }
                 
             }
