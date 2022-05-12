@@ -31,7 +31,17 @@ namespace PlatziEscuela.App
         }
         public IEnumerable<string> GetListaDeAsignaturas()
         {
-            var ListaDeEvaluaciones = GetListaDeEvaluaciones();
+
+
+
+
+            return GetListaDeAsignaturas(out var dummy);
+
+
+        }
+        public IEnumerable<string> GetListaDeAsignaturas( out IEnumerable<Evalucaiones> ListaDeEvaluaciones)
+        {
+             ListaDeEvaluaciones = GetListaDeEvaluaciones();
 
 
 
@@ -45,6 +55,14 @@ namespace PlatziEscuela.App
         public Dictionary<string, IEnumerable<Evalucaiones>> GetDicEvaluaXAsig()
         {
             var dictaRta = new Dictionary<string, IEnumerable<Evalucaiones>>();
+            var ListaAsiganaturas = GetListaDeAsignaturas(out var LisaEvaluacion);
+            foreach (var asing in ListaAsiganaturas)
+            {
+                var evalasig = from eval in LisaEvaluacion
+                               where eval.ObjAsignatura.NombreObjetoEscuela == asing
+                              select eval;
+                dictaRta.Add(asing, evalasig)
+            }
             return dictaRta;
         }
     }
