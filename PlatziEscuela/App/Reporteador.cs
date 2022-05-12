@@ -98,57 +98,5 @@ namespace PlatziEscuela.App
             }
             return Respuesta;
         }
-        public Dictionary<string, IEnumerable<object>> GetTopPromedioAlumnos(int NumTop, string NAsignatura)
-        {
-            var Respuesta = new Dictionary<string, IEnumerable<object>>();
-            var ListaPromedioa = GetPromedioAlumnoPorAsignatura();
-            foreach (var asig in ListaPromedioa)
-            {
-                if (asig.Key.Equals(NAsignatura))
-                {
-                    Respuesta.Add(NAsignatura,asig.Value);
-                }
-                
-            }
-            return Respuesta;
-        }
-        public Dictionary<String, IEnumerable<Object>> GetTopPromedioDeUnaAsignatura(string asignatura, int top)
-        {
-            var respuesta = new Dictionary<string, IEnumerable<Object>>();
-            var topPromedios = GetTopPromedioAlumnos(top);
-            foreach (var asig in topPromedios)
-            {
-                if (asig.Key.Equals(asignatura))
-                {
-                    respuesta.Add(asignatura, asig.Value);
-                }
-            }
-            return respuesta;
-        }
-
-        public Dictionary<string, IEnumerable<Object>> GetTopPromedioPorCadaAsignatura(int top)
-        {
-            var respuesta = new Dictionary<string, IEnumerable<Object>>();
-            var diccionarioEvaluacionesPorAsignatura = GetDicEvaluaXAsig ();
-            foreach (var asignaturaConEvaluaciones in diccionarioEvaluacionesPorAsignatura)
-            {
-                var promediosAlumnos = (from evaluacion in asignaturaConEvaluaciones.Value
-                                        group evaluacion by new
-                                        {
-                                            evaluacion.ObjAlumno.IDentificadorunico,
-                                            evaluacion.ObjAlumno.NombreObjetoEscuela
-                                        }
-                            into grupoEvaluacionesAlumno
-                                        select new AlumnoPromedio
-                                        {
-                                            AlumnoID = grupoEvaluacionesAlumno.Key.IDentificadorunico,
-                                            NombreAlumno = grupoEvaluacionesAlumno.Key.NombreObjetoEscuela,
-                                            promeido = grupoEvaluacionesAlumno.Average(evaluacion => evaluacion.Calificacion)
-                                        }).OrderByDescending(alumno => alumno.promeido).Take(top);
-                respuesta.Add(asignaturaConEvaluaciones.Key, promediosAlumnos);
-            }
-            return respuesta;
-        }
-
     }
 }
