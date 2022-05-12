@@ -34,7 +34,6 @@ namespace PlatziEscuela.App
 
 
 
-
             return GetListaDeAsignaturas(out var dummy);
 
 
@@ -98,6 +97,43 @@ namespace PlatziEscuela.App
                 Respuesta.Add(asig.Key, FiltroDeproemdios);
             }
             return Respuesta;
+        }
+        public Dictionary<string, IEnumerable<Object>> GetTopPromedioPorCadaAsignatura(int top)
+        {
+            var respuesta = new Dictionary<string, IEnumerable<Object>>();
+            var diccionarioEvaluacionesPorAsignatura = GetDicEvaluaXAsig();
+            foreach (var asignaturaConEvaluaciones in diccionarioEvaluacionesPorAsignatura)
+            {
+                var promediosAlumnos = (from evaluacion in asignaturaConEvaluaciones.Value
+                                        group evaluacion by new
+                                        {
+                                            evaluacion.ObjAlumno.IDentificadorunico,
+                                            evaluacion.ObjAlumno.NombreObjetoEscuela
+                                        }
+                            into grupoEvaluacionesAlumno
+                                        select new AlumnoPromedio
+                                        {
+                                            AlumnoID= grupoEvaluacionesAlumno.Key.IDentificadorunico,
+                                            NombreAlumno = grupoEvaluacionesAlumno.Key.NombreObjetoEscuela,
+                                            promeido = grupoEvaluacionesAlumno.Average(evaluacion => evaluacion.Calificacion)
+                                        }).OrderByDescending(alumno => alumno.promeido).Take(top);
+                respuesta.Add(asignaturaConEvaluaciones.Key, promediosAlumnos);
+            }
+            return respuesta;
+        }
+
+        public Dictionary<String, IEnumerable<Object>> GetTopPromedioDeUnaAsignatura(string asignatura, int top)
+        {
+            var respuesta = new Dictionary<string, IEnumerable<Object>>();
+            var topPromedios = GetTopPromedioPorCadaAsignatura(top);
+            foreach (var asig in topPromedios)
+            {
+                if (asig.Key.Equals(asignatura))
+                {
+                    respuesta.Add(asignatura, asig.Value);
+                }
+            }
+            return respuesta;
         }
     }
 }
