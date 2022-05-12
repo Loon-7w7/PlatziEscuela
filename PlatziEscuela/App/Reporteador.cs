@@ -61,9 +61,28 @@ namespace PlatziEscuela.App
                 var evalasig = from eval in LisaEvaluacion
                                where eval.ObjAsignatura.NombreObjetoEscuela == asing
                               select eval;
-                dictaRta.Add(asing, evalasig)
+                dictaRta.Add(asing, evalasig);
             }
             return dictaRta;
         }
+
+        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnoPorAsignatura() 
+        {
+            var Respuesta = new Dictionary<string, IEnumerable<object>>();
+            var dicEvalxAsig = GetDicEvaluaXAsig();
+            foreach (var AsigConEval in dicEvalxAsig)
+            {
+                var dummmy = from Evalu in AsigConEval.Value
+                             select new
+                             {
+                                 Evalu.ObjAlumno.IDentificadorunico,
+                                 AlumnoNombre = Evalu.ObjAlumno.NombreObjetoEscuela,
+                                 NombreEvaluacion = Evalu.NombreObjetoEscuela,
+                                 Evalu.Calificacion
+                             };
+            }
+            return Respuesta;
+        }
+
     }
 }
