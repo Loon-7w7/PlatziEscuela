@@ -13,6 +13,11 @@ namespace PlatziEscuela.Util
             WriteLine("".PadLeft(TamañoLinea, '='));
         }
 
+        public static void PrecioneEnter()
+        {
+            WriteLine("Precione Enter Para continuar");
+        }
+
         public static void EscirbirTitulo(string Titulo)
         {
             var TamañoDeLinea = Titulo.Length + 4;
