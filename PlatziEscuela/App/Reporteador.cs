@@ -86,5 +86,19 @@ namespace PlatziEscuela.App
             return Respuesta;
         }
 
+        public Dictionary<string, IEnumerable<object>> GetTopPromedioAlumnos(int NumTop) 
+        {
+            var Respuesta = new Dictionary<string, IEnumerable<object>>();
+            var ListaPromedioa = GetPromedioAlumnoPorAsignatura();
+            foreach (var asig in ListaPromedioa)
+            {
+                var FiltroDeproemdios = (from AlumnoPromedio prom in asig.Value
+                                         orderby prom.promeido descending
+                                         select prom).Take(NumTop).ToList();
+                Respuesta.Add(asig.Key, FiltroDeproemdios);
+            }
+            return Respuesta;
+        }
+
     }
 }
