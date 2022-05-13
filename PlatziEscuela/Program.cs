@@ -10,17 +10,15 @@ using PlatziEscuela.constanttexts;
 
 namespace PlatziEscuela
 {
-    public class Program : ShowMenu
+    public class Program 
     {
-   
-        static void Main(string[] args)
-        {
-            callmenu();
-        }
-        private static void callmenu()
+
+        private static void Main(string[] args) => Callmenu();
+
+        private static void Callmenu()
         {
             var MenuShow = new ShowMenu();
-            MenuShow.MostrarMenu();
+            MenuShow.MenuShow();
         }
 
        
